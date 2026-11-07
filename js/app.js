@@ -21,14 +21,14 @@
   // Translations Dictionary
   const i18n = {
     uz: {
-      siteTitle: "FLANKO — Sanoat Quvurlari va Metall Fitinglar",
+      siteTitle: "YunalGroup — Sanoat Quvurlari va Metall Fitinglar",
       siteSubtitle: "Sanoat armaturalari va fitinglar",
       topQuality: "ГОСТ va EN sertifikatlangan mahsulotlar",
       topDelivery: "O'zbekiston bo'ylab tezkor yetkazib berish",
       topWholesale: "Ulgurji va chakana savdo",
       searchPlaceholder: "Mahsulot nomi, o'lchami yoki DN bo'yicha qidirish...",
       vatWithout: "QQSsiz",
-      vatWith: "+12% QQS bilan",
+      vatWith: "+12% QQS",
       cartBtn: "Savat / Smeta",
       cartEmpty: "Savatda hozircha mahsulot yo'q",
       cartSubtotal: "Mahsulotlar qiymati (QQSsiz):",
@@ -38,7 +38,7 @@
       sendTelegram: "Telegram orqali buyurtma",
       clearCart: "Savatni tozalash",
       heroBadge: "Sanoat fitinglari va armaturalar ombori",
-      heroTitlePrefix: "FLANKO — Yuqori Sifatli",
+      heroTitlePrefix: "YunalGroup — Yuqori Sifatli",
       heroTitleHighlight: "Metall Fitinglar va Quvur Armaturalari",
       heroDesc: "Truboprovodlar, isitish, gaz va suv tarmoqlari uchun 350+ turdagi metall perexodlar, troyiniklar, otvodlar, flaneslar va zapor armaturalari to'g'ridan-to'g'ri birinchi qo'ldan.",
       heroCatalogBtn: "Katalogga o'tish",
@@ -76,7 +76,7 @@
       smetaPrinted: "Smeta chop etish oynasi ochildi",
       pdfPage: "Katalog sahifasi:",
       aboutSubtitle: "Nima uchun biz?",
-      aboutTitle: "Flanko bilan hamkorlik afzalliklari",
+      aboutTitle: "YunalGroup bilan hamkorlik afzalliklari",
       about1Title: "Katta Ombor va Tezkor Yetkazish",
       about1Text: "Barcha 27 toifadagi detallar va 350+ o'lchamlar Toshkent omborimizda doimiy zaxirada mavjud. Katta obyektlar uchun kechiktirmasdan yetkazib beramiz.",
       about2Title: "Sertifikatlangan Sifat (ГОСТ & EN)",
@@ -97,7 +97,7 @@
       footerWorkingHours: "Har kuni: 09:00 — 21:00"
     },
     ru: {
-      siteTitle: "FLANKO — Промышленные Трубы и Металлическая Арматура",
+      siteTitle: "YunalGroup — Промышленные Трубы и Металлическая Арматура",
       siteSubtitle: "Промышленная трубопроводная арматура",
       topQuality: "Сертифицированная продукция ГОСТ и EN",
       topDelivery: "Оперативная доставка по всему Узбекистану",
@@ -114,7 +114,7 @@
       sendTelegram: "Заказ через Telegram",
       clearCart: "Очистить корзину",
       heroBadge: "Склад промышленной арматуры и фитингов",
-      heroTitlePrefix: "FLANKO — Надежная",
+      heroTitlePrefix: "YunalGroup — Надежная",
       heroTitleHighlight: "Трубопроводная Арматура и Фитинги",
       heroDesc: "Более 350 типоразмеров стальных переходов, тройников, отводов, фланцев, затворов и компенсаторов для систем отопления, газа и водоснабжения напрямую со склада.",
       heroCatalogBtn: "Перейти в каталог",
@@ -152,7 +152,7 @@
       smetaPrinted: "Окно печати сметы открыто",
       pdfPage: "Страница каталога:",
       aboutSubtitle: "Почему мы?",
-      aboutTitle: "Преимущества сотрудничества с Flanko",
+      aboutTitle: "Преимущества сотрудничества с YunalGroup",
       about1Title: "Собственный Склад и Быстрая Отгрузка",
       about1Text: "Все 27 категорий деталей и более 350 размеров постоянно в наличии на складе в Ташкенте. Комплектация и отгрузка в кратчайшие сроки.",
       about2Title: "Сертифицированное Качество (ГОСТ и EN)",
@@ -268,13 +268,13 @@
             <span class="cart-item-size"><i class="bi bi-rulers"></i> ${item.size}</span>
             <span class="cart-item-unit-price">${formatMoney(unitPrice)} so'm / dona</span>
             <div class="cart-item-qty-row">
-              <button class="qty-btn" onclick="window.flankoApp.updateQty(${index}, -1)">-</button>
+              <button class="qty-btn" onclick="window.yunalApp.updateQty(${index}, -1)">-</button>
               <input type="text" class="qty-input" value="${item.qty}" readonly>
-              <button class="qty-btn" onclick="window.flankoApp.updateQty(${index}, 1)">+</button>
+              <button class="qty-btn" onclick="window.yunalApp.updateQty(${index}, 1)">+</button>
             </div>
           </div>
           <div class="cart-item-total-col">
-            <button class="cart-item-remove-btn" onclick="window.flankoApp.removeFromCart(${index})" title="O'chirish">
+            <button class="cart-item-remove-btn" onclick="window.yunalApp.removeFromCart(${index})" title="O'chirish">
               <i class="bi bi-trash3"></i>
             </button>
             <span class="cart-item-subtotal">${formatMoney(lineTotal)} so'm</span>
@@ -468,7 +468,7 @@
 
       return `
         <div class="product-card" id="card-${product.id}">
-          <div class="card-image-box" onclick="window.flankoApp.openModal('${product.id}')">
+          <div class="card-image-box" onclick="window.yunalApp.openModal('${product.id}')">
             <span class="card-badge-top-left">${product.specs.material ? product.specs.material.split('/')[0] : 'СТАЛЬ'}</span>
             <span class="card-badge-page"><i class="bi bi-file-earmark-pdf"></i> ${t('pdfPage')} ${product.pdfPages}</span>
             <img src="${product.image}" alt="${title}" class="card-img" loading="lazy">
@@ -478,7 +478,7 @@
           </div>
           <div class="card-body">
             <div class="card-category-name">${categoryName}</div>
-            <h3 class="card-title" onclick="window.flankoApp.openModal('${product.id}')">${title}</h3>
+            <h3 class="card-title" onclick="window.yunalApp.openModal('${product.id}')">${title}</h3>
             <div class="card-title-sub">${subTitle}</div>
 
             <div class="card-variant-selector-box">
@@ -486,7 +486,7 @@
                 <span>${t('sizeLabel')}</span>
                 <span class="variant-count-badge">${product.variants.length} ${t('sizesCount')}</span>
               </div>
-              <select class="card-variant-select" onchange="window.flankoApp.onVariantChange('${product.id}', this.value)">
+              <select class="card-variant-select" onchange="window.yunalApp.onVariantChange('${product.id}', this.value)">
                 ${optionsHtml}
               </select>
             </div>
@@ -500,11 +500,11 @@
             </div>
 
             <div class="card-actions">
-              <button class="btn-card-more" onclick="window.flankoApp.openModal('${product.id}')">
+              <button class="btn-card-more" onclick="window.yunalApp.openModal('${product.id}')">
                 <i class="bi bi-table"></i>
                 <span>${t('btnAllSizes')}</span>
               </button>
-              <button class="btn-card-buy" onclick="window.flankoApp.addToCart('${product.id}', ${selectedIndex})">
+              <button class="btn-card-buy" onclick="window.yunalApp.addToCart('${product.id}', ${selectedIndex})">
                 <i class="bi bi-cart-plus"></i>
                 <span>${t('btnAddToCart')}</span>
               </button>
@@ -565,7 +565,7 @@
           <td class="td-price">${formatMoney(v.price)} so'm</td>
           <td class="td-vat">${formatMoney(v.priceVat)} so'm</td>
           <td style="text-align: right;">
-            <button class="btn-table-add" onclick="window.flankoApp.addToCart('${product.id}', ${i})">
+            <button class="btn-table-add" onclick="window.yunalApp.addToCart('${product.id}', ${i})">
               <i class="bi bi-cart-plus"></i> ${t('btnAddToCart')}
             </button>
           </td>
@@ -638,14 +638,14 @@
       <div style="font-family: Arial, sans-serif; color: #111; max-width: 900px; margin: 0 auto;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0284c7; padding-bottom: 16px; margin-bottom: 20px;">
           <div>
-            <h1 style="margin: 0; font-size: 26px; color: #0f172a; letter-spacing: 2px;">FLANKO METAL</h1>
+            <h1 style="margin: 0; font-size: 26px; color: #0f172a; letter-spacing: 2px;">YUNALGROUP</h1>
             <p style="margin: 4px 0 0; font-size: 13px; color: #555;">Промышленная трубопроводная арматура и металлоизделия</p>
             <p style="margin: 2px 0 0; font-size: 12px; color: #777;">г. Ташкент, Олтинтепа, здание Калбинур | Тел: +998 (99) 871-03-27 | Telegram: @Bobur8710327</p>
           </div>
           <div style="text-align: right;">
             <h2 style="margin: 0; font-size: 18px; color: #0284c7;">СМЕТА / КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ</h2>
             <p style="margin: 4px 0 0; font-size: 13px; color: #555;">Дата: ${dateStr}</p>
-            <p style="margin: 2px 0 0; font-size: 12px; color: #777;">№ FL-${Date.now().toString().slice(-6)}</p>
+            <p style="margin: 2px 0 0; font-size: 12px; color: #777;">№ YG-${Date.now().toString().slice(-6)}</p>
           </div>
         </div>
 
@@ -709,7 +709,7 @@
     const vatAmount = state.cart.reduce((sum, item) => sum + ((item.priceVat - item.price) * item.qty), 0);
     const grandTotal = subtotal + vatAmount;
 
-    let text = `📦 FLANKO BUYURTMA SMETASI\n`;
+    let text = `📦 YUNALGROUP BUYURTMA SMETASI\n`;
     text += `📅 Sana: ${new Date().toLocaleDateString()}\n`;
     text += `👤 Qabul qiluvchi: Bobur (+998 99 871 03 27 / @Bobur8710327)\n`;
     text += `📍 Toshkent shahri bo'ylab bepul yetkazib berish (12 oy kafolat)\n`;
@@ -802,7 +802,7 @@
     const phone = document.getElementById('form-phone').value;
     const comment = document.getElementById('form-comment').value;
 
-    let msg = `📞 FLANKO SAYTIDAN YANGI ARIZA:\n\n`;
+    let msg = `📞 YUNALGROUP SAYTIDAN YANGI ARIZA:\n\n`;
     msg += `👤 Ism: ${name}\n`;
     msg += `📱 Telefon: ${phone}\n`;
     if (comment) msg += `💬 Izoh: ${comment}\n`;
@@ -822,27 +822,36 @@
 
   // Initialize Global Listeners & Search
   function initEvents() {
-    // Search input
+    // Search input (Desktop & Mobile)
     const searchInput = document.getElementById('nav-search-input');
     const searchClear = document.getElementById('nav-search-clear');
+    const mobileSearchInput = document.getElementById('mobile-search-input');
+    const mobileSearchClear = document.getElementById('mobile-search-clear');
+
+    function syncSearch(query) {
+      state.searchQuery = query;
+      if (searchInput && searchInput.value !== query) searchInput.value = query;
+      if (mobileSearchInput && mobileSearchInput.value !== query) mobileSearchInput.value = query;
+      
+      const showClear = query.trim() !== '';
+      if (searchClear) searchClear.style.display = showClear ? 'block' : 'none';
+      if (mobileSearchClear) mobileSearchClear.style.display = showClear ? 'block' : 'none';
+      
+      renderProducts();
+    }
 
     if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        state.searchQuery = e.target.value;
-        if (searchClear) searchClear.style.display = state.searchQuery ? 'block' : 'none';
-        renderProducts();
-      });
+      searchInput.addEventListener('input', (e) => syncSearch(e.target.value));
+    }
+    if (mobileSearchInput) {
+      mobileSearchInput.addEventListener('input', (e) => syncSearch(e.target.value));
     }
 
     if (searchClear) {
-      searchClear.addEventListener('click', () => {
-        if (searchInput) {
-          searchInput.value = '';
-          state.searchQuery = '';
-          searchClear.style.display = 'none';
-          renderProducts();
-        }
-      });
+      searchClear.addEventListener('click', () => syncSearch(''));
+    }
+    if (mobileSearchClear) {
+      mobileSearchClear.addEventListener('click', () => syncSearch(''));
     }
 
     // Sort select
@@ -949,11 +958,11 @@
     renderProducts();
     updateCartUI();
     initEvents();
-    console.log("Flanko Industrial Application initialized successfully.");
+    console.log("YunalGroup Industrial Application initialized successfully.");
   }
 
   // Expose API for HTML inline handlers
-  window.flankoApp = {
+  window.yunalApp = window.flankoApp = {
     addToCart,
     updateQty,
     removeFromCart,

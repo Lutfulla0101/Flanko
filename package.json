@@ -1,18 +1,18 @@
 {
-  "name": "flanko-industrial",
+  "name": "yunalgroup-industrial",
   "version": "1.0.0",
-  "description": "Flanko - Sanoat metall fitinglar va quvur armaturalari katalogi",
+  "description": "YunalGroup - Sanoat metall fitinglar va quvur armaturalari katalogi",
   "scripts": {
     "start": "node local-server.js",
     "dev": "node local-server.js"
   },
   "keywords": [
-    "flanko",
+    "yunalgroup",
     "fittings",
     "flanges",
     "valves",
     "pipes"
   ],
-  "author": "Flanko",
+  "author": "YunalGroup",
   "license": "ISC"
 }

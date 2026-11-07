@@ -1,0 +1,892 @@
+const fs = require('fs');
+
+const products = [
+  {
+    id: "perekod-metallicheskiy",
+    titleRu: "ПЕРЕХОД МЕТАЛЛИЧЕСКИЙ",
+    titleUz: "Po'lat metall perexod (konsentrik)",
+    category: "welded-fittings",
+    categoryRu: "Приварные фитинги",
+    categoryUz: "Payvandlash fitinglari",
+    image: "public/products/perekod-metallicheskiy.jpg",
+    pdfPages: "1, 2",
+    descriptionRu: "Стальной бесшовный приварной переход для изменения диаметра трубопровода. Обеспечивает плавное изменение потока рабочей среды, высокую герметичность и устойчивость к давлению.",
+    descriptionUz: "Turli diametrli quvurlarni bir-biriga ulash uchun po'lat choksiz payvandlanadigan perexod (o'tkazgich). Yuqori bosimga chidamli va mustahkam germetiklikni ta'minlaydi.",
+    specs: {
+      material: "Сталь 20 / Ст.3",
+      pressure: "до 16 МПа (160 бар)",
+      tempRange: "-70°C ... +450°C",
+      standard: "ГОСТ 17378-2001"
+    },
+    variants: [
+      { size: "26.9*3.5-21.3*3 (20*15)", price: 8000, priceVat: 8960 },
+      { size: "33.7*3.5-21.3*3 (DN25*15)", price: 9000, priceVat: 10080 },
+      { size: "25B*3.5-20B*3", price: 9000, priceVat: 10080 },
+      { size: "33.7*3.5-26.9*3.5 (DN25*20)", price: 12000, priceVat: 13440 },
+      { size: "32*3.5-15*3.5", price: 12000, priceVat: 13440 },
+      { size: "42.4*4.5-26.9*3.5 (DN38*20)", price: 13500, priceVat: 15120 },
+      { size: "42.4*4.5-33.7*3.5 (DN38*25)", price: 13500, priceVat: 15120 },
+      { size: "48.3*4-26.9*3.5 (DN42*20)", price: 16000, priceVat: 17920 },
+      { size: "48.3*4.5-33.7*3.5", price: 16000, priceVat: 17920 },
+      { size: "48.3*4.5-42.4*4.5 (DN42*32)", price: 16000, priceVat: 17920 },
+      { size: "57*5-25*3.5 (DN57*20)", price: 19000, priceVat: 21280 },
+      { size: "57*5-32*3.5 (DN57*25)", price: 19000, priceVat: 21280 },
+      { size: "57*5-38*4 (DN57*32)", price: 19000, priceVat: 21280 },
+      { size: "57*5-45*5", price: 19000, priceVat: 21280 },
+      { size: "76*6-38*4", price: 32000, priceVat: 35840 },
+      { size: "76*6-45*5", price: 32000, priceVat: 35840 },
+      { size: "76*6-57*5", price: 32000, priceVat: 35840 },
+      { size: "89*6-45*5", price: 32000, priceVat: 35840 },
+      { size: "89*6-57*5", price: 32000, priceVat: 35840 },
+      { size: "89*6-76*6", price: 32000, priceVat: 35840 },
+      { size: "114*6-57*5", price: 45000, priceVat: 50400 },
+      { size: "114*6-76*6", price: 45000, priceVat: 50400 },
+      { size: "114*6-89*6", price: 45000, priceVat: 50400 },
+      { size: "133*7-57*5", price: 75000, priceVat: 84000 },
+      { size: "133*7-76*6", price: 75000, priceVat: 84000 },
+      { size: "133*7-89*6", price: 75000, priceVat: 84000 },
+      { size: "133*7-108*6", price: 75000, priceVat: 84000 },
+      { size: "159*7-57*5", price: 120000, priceVat: 134400 },
+      { size: "159*7-76*6", price: 120000, priceVat: 134400 },
+      { size: "159*7-89*6", price: 120000, priceVat: 134400 },
+      { size: "159*7-108*6", price: 120000, priceVat: 134400 },
+      { size: "159*7-133*6", price: 120000, priceVat: 134400 },
+      { size: "219*8-57*5", price: 210000, priceVat: 235200 },
+      { size: "219*8-76*6", price: 210000, priceVat: 235200 },
+      { size: "219*8-89*6", price: 210000, priceVat: 235200 },
+      { size: "219*8-108*6", price: 210000, priceVat: 235200 },
+      { size: "219*8-133*7", price: 210000, priceVat: 235200 },
+      { size: "219*8-159*7", price: 210000, priceVat: 235200 }
+    ]
+  },
+  {
+    id: "troynik-metallicheskiy",
+    titleRu: "ТРОЙНИК МЕТАЛЛИЧЕСКИЙ",
+    titleUz: "Po'lat metall troynik (uchlik)",
+    category: "welded-fittings",
+    categoryRu: "Приварные фитинги",
+    categoryUz: "Payvandlash fitinglari",
+    image: "public/products/troynik-metallicheskiy.jpg",
+    pdfPages: "3",
+    descriptionRu: "Стальной приварной штампованный тройник для ответвления трубопроводных магистралей. Применяется в теплосетях, водоснабжении, газопроводах и технологических линиях.",
+    descriptionUz: "Quvur tarmog'idan qo'shimcha yo'nalish ajratish uchun payvandlanadigan po'lat troynik (uchlik). Issiqlik tizimlari, gaz va suv quvurlarida keng qo'llaniladi.",
+    specs: {
+      material: "Углеродистая сталь 20",
+      pressure: "Ру до 16 МПа",
+      tempRange: "-40°C ... +400°C",
+      standard: "ГОСТ 17376-2001"
+    },
+    variants: [
+      { size: "26.9*3.5 (DN20)", price: 25000, priceVat: 28000 },
+      { size: "33.7*3.5 (DN25)", price: 30000, priceVat: 33600 },
+      { size: "42.4*4.5 (DN38)", price: 30000, priceVat: 33600 },
+      { size: "48*5", price: 37000, priceVat: 41440 },
+      { size: "57*5", price: 40000, priceVat: 44800 },
+      { size: "57*5-45*5", price: 45000, priceVat: 50400 },
+      { size: "76*6-57*5", price: 77000, priceVat: 86240 },
+      { size: "76*6", price: 77000, priceVat: 86240 },
+      { size: "89*6-57*5", price: 100000, priceVat: 112000 },
+      { size: "89*6-76*6", price: 100000, priceVat: 112000 },
+      { size: "89*6", price: 100000, priceVat: 112000 },
+      { size: "114*6", price: 150000, priceVat: 168000 },
+      { size: "133*6-7*5", price: 200000, priceVat: 224000 },
+      { size: "133*7-89*6", price: 200000, priceVat: 224000 },
+      { size: "133*7-108*6", price: 200000, priceVat: 224000 },
+      { size: "133*7", price: 200000, priceVat: 224000 },
+      { size: "159*7-57*5", price: 260000, priceVat: 291200 },
+      { size: "159*7-76*6", price: 260000, priceVat: 291200 },
+      { size: "159*7-89*6", price: 260000, priceVat: 291200 },
+      { size: "159*7-108*6", price: 260000, priceVat: 291200 },
+      { size: "159*7-133*7", price: 260000, priceVat: 291200 },
+      { size: "159*7", price: 260000, priceVat: 291200 },
+      { size: "219*8-108*6", price: 550000, priceVat: 616000 },
+      { size: "219*8-133*7", price: 550000, priceVat: 616000 },
+      { size: "219*8-159*7", price: 550000, priceVat: 616000 }
+    ]
+  },
+  {
+    id: "otvod-metallicheskiy",
+    titleRu: "ОТВОД МЕТАЛЛИЧЕСКИЙ",
+    titleUz: "Po'lat metall otvod (tirsak 90°)",
+    category: "welded-fittings",
+    categoryRu: "Приварные фитинги",
+    categoryUz: "Payvandlash fitinglari",
+    image: "public/products/otvod-metallicheskiy.jpg",
+    pdfPages: "4",
+    descriptionRu: "Крутоизогнутый бесшовный стальной отвод 90° для плавного изменения направления трубопровода при монтаже отопительных, водопроводных и промышленных систем.",
+    descriptionUz: "Quvur yo'nalishini 90 gradusga o'zgartirish uchun choksiz po'lat otvod (tirsak). Sanoat va maishiy muhandislik tarmoqlarida asosiy detal.",
+    specs: {
+      material: "Сталь 20 / 09Г2С",
+      angle: "90 градусов",
+      pressure: "до 16 МПа (PN 160)",
+      standard: "ГОСТ 17375-2001"
+    },
+    variants: [
+      { size: "21.3*3 (DN15)", price: 5000, priceVat: 5600 },
+      { size: "26.9*3.5 (DN20)", price: 7000, priceVat: 7840 },
+      { size: "33.7*3.5 (DN25)", price: 9000, priceVat: 10080 },
+      { size: "42.4*5 (DN32)", price: 11000, priceVat: 12320 },
+      { size: "48.3*5 (DN40)", price: 14500, priceVat: 16240 },
+      { size: "57*5", price: 28500, priceVat: 31920 },
+      { size: "76*6", price: 40000, priceVat: 44800 },
+      { size: "89*6", price: 78000, priceVat: 87360 },
+      { size: "114*6", price: 115000, priceVat: 128800 },
+      { size: "133*7", price: 135000, priceVat: 151200 },
+      { size: "159*7", price: 250000, priceVat: 280000 },
+      { size: "219*8", price: 425000, priceVat: 476000 },
+      { size: "273*8", price: 800000, priceVat: 896000 },
+      { size: "325*8", price: 1100000, priceVat: 1232000 },
+      { size: "377*9", price: 1400000, priceVat: 1568000 },
+      { size: "426*9", price: 2000000, priceVat: 2240000 }
+    ]
+  },
+  {
+    id: "zaglushka-metallicheskaya",
+    titleRu: "ЗАГЛУШКА МЕТАЛЛИЧЕСКАЯ",
+    titleUz: "Po'lat metall ellipsoid zaglushka",
+    category: "welded-fittings",
+    categoryRu: "Приварные фитинги",
+    categoryUz: "Payvandlash fitinglari",
+    image: "public/products/zaglushka-metallicheskaya.jpg",
+    pdfPages: "5",
+    descriptionRu: "Стальная эллиптическая приварная заглушка для надежного глушения концевых участков трубопроводов и емкостей под давлением.",
+    descriptionUz: "Quvurning oxirgi teshigini butunlay germetik yopish uchun mo'ljallangan ellipsoid po'lat zaglushka.",
+    specs: {
+      material: "Сталь 20",
+      shape: "Эллиптическая бесшовная",
+      pressure: "до 16 МПа",
+      standard: "ГОСТ 17379-2001"
+    },
+    variants: [
+      { size: "33.7*3.5 (DN25)", price: 12000, priceVat: 13440 },
+      { size: "42.4*4 (DN32)", price: 15000, priceVat: 16800 },
+      { size: "48*5", price: 16500, priceVat: 18480 },
+      { size: "57*5", price: 18000, priceVat: 20160 },
+      { size: "76*6", price: 26500, priceVat: 29680 },
+      { size: "89*6", price: 32000, priceVat: 35840 },
+      { size: "114*6", price: 38000, priceVat: 42560 },
+      { size: "133*7", price: 55000, priceVat: 61600 },
+      { size: "159*7", price: 95000, priceVat: 106400 },
+      { size: "219*8", price: 165000, priceVat: 184800 }
+    ]
+  },
+  {
+    id: "kran-nerzhaveyushiy-s304",
+    titleRu: "ШАРОВОЙ КРАН ИЗ НЕРЖАВЕЮЩЕЙ СТАЛИ S-304",
+    titleUz: "Zanglamaydigan po'lat kran S-304",
+    category: "valves",
+    categoryRu: "Запорная арматура",
+    categoryUz: "Zapor armaturasi",
+    image: "public/products/kran-nerzhaveyushiy-s304.jpg",
+    pdfPages: "6",
+    descriptionRu: "Полнопроходной муфтовый шаровой кран из высококачественной нержавеющей стали AISI 304 (S-304). Устойчив к коррозии, агрессивным средам и высоким температурам.",
+    descriptionUz: "AISI 304 zanglamas po'latdan ishlangan yuqori sifatli sharsimon kran. Korroziyaga va tajovuzkor muhitlarga o'ta chidamli.",
+    specs: {
+      material: "Нержавеющая сталь AISI 304 (08Х18Н10)",
+      connection: "Резьбовое BSPP / G внутренняя",
+      pressure: "PN 63 (6.3 МПа)",
+      tempRange: "-29°C ... +180°C"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 40000, priceVat: 44800 },
+      { size: "ДУ-20 (3/4\")", price: 48000, priceVat: 53760 },
+      { size: "ДУ-25 (1\")", price: 75000, priceVat: 84000 },
+      { size: "ДУ-32 (1 1/4\")", price: 92000, priceVat: 103040 },
+      { size: "ДУ-40 (1 1/2\")", price: 145000, priceVat: 162400 },
+      { size: "ДУ-50 (2\")", price: 195000, priceVat: 218400 },
+      { size: "ДУ-65 (2 1/2\")", price: 385000, priceVat: 431200 }
+    ]
+  },
+  {
+    id: "rezbovoy-perekhod-muftoviy",
+    titleRu: "РЕЗЬБОВОЙ ПЕРЕХОД МУФТОВЫЙ",
+    titleUz: "Rezbali muftali perexod (o'tish muftasi)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/rezbovoy-perekhod-muftoviy.jpg",
+    pdfPages: "7, 8",
+    descriptionRu: "Чугунный/стальной резьбовой переходной фитинг (муфта переходная) с внутренней резьбой разных диаметров для сантехнических и промышленных трубопроводов.",
+    descriptionUz: "Turli diametrdagi ichki rezbali quvurlarni mustahkam bog'lash uchun rezbali muftali perexod.",
+    specs: {
+      material: "Ковкий чугун / Оцинкованная сталь",
+      thread: "Трубная цилиндрическая резьба (G)",
+      pressure: "до 2.5 МПа (PN 25)"
+    },
+    variants: [
+      { size: "20x15", price: 8000, priceVat: 8960 },
+      { size: "25x15", price: 9000, priceVat: 10080 },
+      { size: "25x20", price: 9000, priceVat: 10080 },
+      { size: "32x15", price: 16000, priceVat: 17920 },
+      { size: "32x20", price: 16000, priceVat: 17920 },
+      { size: "32x25", price: 16000, priceVat: 17920 },
+      { size: "40x15", price: 18000, priceVat: 20160 },
+      { size: "40x20", price: 18000, priceVat: 20160 },
+      { size: "40x25", price: 18000, priceVat: 20160 },
+      { size: "40x32", price: 18000, priceVat: 20160 },
+      { size: "50x15", price: 32000, priceVat: 35840 },
+      { size: "50x20", price: 32000, priceVat: 35840 },
+      { size: "50x25", price: 32000, priceVat: 35840 },
+      { size: "50x32", price: 32000, priceVat: 35840 },
+      { size: "50x40", price: 32000, priceVat: 35840 },
+      { size: "65x15", price: 48000, priceVat: 53760 },
+      { size: "65x20", price: 48000, priceVat: 53760 },
+      { size: "65x25", price: 48000, priceVat: 53760 },
+      { size: "65x32", price: 48000, priceVat: 53760 },
+      { size: "65x40", price: 48000, priceVat: 53760 },
+      { size: "65x50", price: 48000, priceVat: 53760 },
+      { size: "80x32", price: 95000, priceVat: 106400 },
+      { size: "80x40", price: 95000, priceVat: 106400 },
+      { size: "80x50", price: 95000, priceVat: 106400 },
+      { size: "80x65", price: 95000, priceVat: 106400 },
+      { size: "100x40", price: 125000, priceVat: 140000 },
+      { size: "100x50", price: 125000, priceVat: 140000 },
+      { size: "100x65", price: 125000, priceVat: 140000 },
+      { size: "100x80", price: 125000, priceVat: 140000 }
+    ]
+  },
+  {
+    id: "nippel-shestigrannik",
+    titleRu: "НИППЕЛЬ (ШЕСТИГРАННИК НИППЕЛЬ)",
+    titleUz: "Oltiqirrali nippel (rezbali)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/nippel-shestigrannik.jpg",
+    pdfPages: "9",
+    descriptionRu: "Шестигранный резьбовой ниппель с наружной цилиндрической резьбой. Удобен для монтажа гаечным ключом, соединяет трубные элементы равного диаметра.",
+    descriptionUz: "Ikkala tomoni tashqi rezbali oltiqirrali po'lat/cho'yan nippel. Kalit bilan burashga juda qulay.",
+    specs: {
+      material: "Ковкий чугун / Оцинкованная сталь",
+      thread: "Наружная трубная (G)",
+      pressure: "до 25 бар"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 4500, priceVat: 5040 },
+      { size: "ДУ-20 (3/4\")", price: 5000, priceVat: 5600 },
+      { size: "ДУ-25 (1\")", price: 6000, priceVat: 6720 },
+      { size: "ДУ-32 (1 1/4\")", price: 12000, priceVat: 13440 },
+      { size: "ДУ-40 (1 1/2\")", price: 22000, priceVat: 24640 },
+      { size: "ДУ-50 (2\")", price: 23000, priceVat: 25760 },
+      { size: "ДУ-65 (2 1/2\")", price: 48000, priceVat: 53760 },
+      { size: "ДУ-80 (3\")", price: 85000, priceVat: 95200 },
+      { size: "ДУ-100 (4\")", price: 135000, priceVat: 151200 },
+      { size: "ДУ-150 (6\")", price: 245000, priceVat: 274400 }
+    ]
+  },
+  {
+    id: "otvod-rezbovoy",
+    titleRu: "ОТВОД РЕЗЬБОВОЙ",
+    titleUz: "Rezbali otvod (ugolnik 90°)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/otvod-rezbovoy.jpg",
+    pdfPages: "10",
+    descriptionRu: "Угольник резьбовой 90 градусов с внутренней трубной резьбой. Оцинкованный/чугунный фитинг для поворота трубопроводов воды, пара и газа.",
+    descriptionUz: "Ichki rezbali 90 gradusli tirsak (ugolnik). Suv, gaz va isitish liniyalarini burchak ostida burish uchun.",
+    specs: {
+      material: "Чугун оцинкованный / сталь",
+      angle: "90°",
+      thread: "Внутренняя резьба"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 8000, priceVat: 8960 },
+      { size: "ДУ-20 (3/4\")", price: 12000, priceVat: 13440 },
+      { size: "ДУ-25 (1\")", price: 16500, priceVat: 18480 },
+      { size: "ДУ-32 (1 1/4\")", price: 18000, priceVat: 20160 },
+      { size: "ДУ-40 (1 1/2\")", price: 25000, priceVat: 28000 },
+      { size: "ДУ-50 (2\")", price: 32000, priceVat: 35840 }
+    ]
+  },
+  {
+    id: "otvod-rezbovoy-europa",
+    titleRu: "ОТВОД РЕЗЬБОВОЙ (EUROPA)",
+    titleUz: "Rezbali otvod EUROPA (qora cho'yan)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/otvod-rezbovoy-europa.jpg",
+    pdfPages: "11",
+    descriptionRu: "Европейский стандарт качества! Высокопрочный чугунный резьбовой отвод серии EUROPA. Повышенная толщина стенок и точная нарезка резьбы.",
+    descriptionUz: "Yevropa standarti bo'yicha ishlab chiqarilgan mustahkamlangan qora cho'yan rezbali tirsak (EUROPA). Devor qalinligi va aniq rezbasi bilan ajralib turadi.",
+    specs: {
+      standard: "Европейский стандарт EN 10242",
+      material: "Высокопрочный чугун",
+      coating: "Антикоррозийное чернение"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 14000, priceVat: 15680 },
+      { size: "ДУ-20 (3/4\")", price: 18000, priceVat: 20160 },
+      { size: "ДУ-25 (1\")", price: 25000, priceVat: 28000 },
+      { size: "ДУ-32 (1 1/4\")", price: 35000, priceVat: 39200 },
+      { size: "ДУ-40 (1 1/2\")", price: 45000, priceVat: 50400 },
+      { size: "ДУ-50 (2\")", price: 87000, priceVat: 97440 }
+    ]
+  },
+  {
+    id: "troynik-rezbovoy",
+    titleRu: "ТРОЙНИК РЕЗЬБОВОЙ",
+    titleUz: "Rezbali troynik (uchlik)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/troynik-rezbovoy.jpg",
+    pdfPages: "12, 13",
+    descriptionRu: "Чугунный резьбовой тройник с тремя ответвлениями под внутреннюю резьбу. Идеален для разводки отопления, водопровода и технологических сред.",
+    descriptionUz: "Ichki rezbali cho'yan uchlik (troynik). Isitish va suv quvurlarini qulay tarmoqlash uchun.",
+    specs: {
+      material: "Ковкий чугун",
+      thread: "Трубная внутренняя",
+      pressure: "до 25 бар"
+    },
+    variants: [
+      { size: "15-15 (1/2\")", price: 10000, priceVat: 11200 },
+      { size: "20-15", price: 12000, priceVat: 13440 },
+      { size: "20-20 (3/4\")", price: 12000, priceVat: 13440 },
+      { size: "25-15", price: 20000, priceVat: 22400 },
+      { size: "25-20", price: 20000, priceVat: 22400 },
+      { size: "25-25 (1\")", price: 26000, priceVat: 29120 },
+      { size: "32-15", price: 26000, priceVat: 29120 },
+      { size: "32-20", price: 26000, priceVat: 29120 },
+      { size: "32-25", price: 26000, priceVat: 29120 },
+      { size: "32-32 (1 1/4\")", price: 30000, priceVat: 33600 },
+      { size: "40-15", price: 30000, priceVat: 33600 },
+      { size: "40-20", price: 30000, priceVat: 33600 },
+      { size: "40-25", price: 30000, priceVat: 33600 },
+      { size: "40-32", price: 30000, priceVat: 33600 },
+      { size: "40-40 (1 1/2\")", price: 30000, priceVat: 33600 },
+      { size: "50-20", price: 54000, priceVat: 60480 },
+      { size: "50-25", price: 54000, priceVat: 60480 },
+      { size: "50-32", price: 54000, priceVat: 60480 },
+      { size: "50-40", price: 54000, priceVat: 60480 },
+      { size: "50-50 (2\")", price: 54000, priceVat: 60480 },
+      { size: "65-15", price: 95000, priceVat: 106400 },
+      { size: "65-20", price: 95000, priceVat: 106400 },
+      { size: "65-25", price: 95000, priceVat: 106400 },
+      { size: "65-32", price: 95000, priceVat: 106400 },
+      { size: "65-40", price: 95000, priceVat: 106400 },
+      { size: "65-50", price: 95000, priceVat: 106400 },
+      { size: "65-65 (2 1/2\")", price: 95000, priceVat: 106400 },
+      { size: "80-32", price: 125000, priceVat: 140000 },
+      { size: "80-40", price: 125000, priceVat: 140000 },
+      { size: "80-50", price: 125000, priceVat: 140000 },
+      { size: "80-65", price: 125000, priceVat: 140000 },
+      { size: "80-80 (3\")", price: 125000, priceVat: 140000 },
+      { size: "100-40", price: 165000, priceVat: 184800 },
+      { size: "100-50", price: 165000, priceVat: 184800 },
+      { size: "100-65", price: 165000, priceVat: 184800 },
+      { size: "100-80", price: 165000, priceVat: 184800 },
+      { size: "100-100 (4\")", price: 165000, priceVat: 184800 }
+    ]
+  },
+  {
+    id: "troynik-rezbovoy-europa",
+    titleRu: "ТРОЙНИК РЕЗЬБОВОЙ (EUROPA)",
+    titleUz: "Rezbali troynik EUROPA (qora cho'yan)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/troynik-rezbovoy-europa.jpg",
+    pdfPages: "14",
+    descriptionRu: "Европейская серия чугунных тройников EUROPA с черным защитным покрытием. Исключительная надежность резьбы и долговечность.",
+    descriptionUz: "EUROPA seriyasidagi mustahkam qora cho'yan rezbali troynik.",
+    specs: {
+      standard: "EN 10242",
+      material: "Ковкий чугун высокого давления",
+      coating: "Масляное чернение"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 20000, priceVat: 22400 },
+      { size: "ДУ-20 (3/4\")", price: 25000, priceVat: 28000 },
+      { size: "ДУ-25 (1\")", price: 40000, priceVat: 44800 },
+      { size: "ДУ-32 (1 1/4\")", price: 48000, priceVat: 53760 },
+      { size: "ДУ-40 (1 1/2\")", price: 55000, priceVat: 61600 },
+      { size: "ДУ-50 (2\")", price: 78000, priceVat: 87360 }
+    ]
+  },
+  {
+    id: "perekhod-rezbovoy",
+    titleRu: "ПЕРЕХОД РЕЗЬБОВОЙ",
+    titleUz: "Rezbali futorka (perekhod)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/perekhod-rezbovoy.jpg",
+    pdfPages: "15, 16",
+    descriptionRu: "Резьбовая переходная пробка / футорка с наружной и внутренней резьбой. Позволяет быстро и компактно состыковать трубы и арматуру разных калибров.",
+    descriptionUz: "Ichki va tashqi rezbali o'tkazgich (futorka). Diametrlarni qisqa masofada qulay o'zgartirish vositasi.",
+    specs: {
+      material: "Ковкий чугун / сталь",
+      thread: "Наружная / внутренняя резьба"
+    },
+    variants: [
+      { size: "20-15", price: 3500, priceVat: 3920 },
+      { size: "25-15", price: 4500, priceVat: 5040 },
+      { size: "25-20", price: 4500, priceVat: 5040 },
+      { size: "32-15", price: 7000, priceVat: 7840 },
+      { size: "32-20", price: 7000, priceVat: 7840 },
+      { size: "32-25", price: 7000, priceVat: 7840 },
+      { size: "40-15", price: 10000, priceVat: 11200 },
+      { size: "40-20", price: 10000, priceVat: 11200 },
+      { size: "40-25", price: 10000, priceVat: 11200 },
+      { size: "40-32", price: 10000, priceVat: 11200 },
+      { size: "50-15", price: 18000, priceVat: 20160 },
+      { size: "50-20", price: 18000, priceVat: 20160 },
+      { size: "50-25", price: 18000, priceVat: 20160 },
+      { size: "50-32", price: 18000, priceVat: 20160 },
+      { size: "50-40", price: 18000, priceVat: 20160 },
+      { size: "65-20", price: 28000, priceVat: 31360 },
+      { size: "65-25", price: 28000, priceVat: 31360 },
+      { size: "65-32", price: 28000, priceVat: 31360 },
+      { size: "65-40", price: 28000, priceVat: 31360 },
+      { size: "65-50", price: 28000, priceVat: 31360 },
+      { size: "80-32", price: 165000, priceVat: 184800 },
+      { size: "80-40", price: 165000, priceVat: 184800 },
+      { size: "80-50", price: 165000, priceVat: 184800 },
+      { size: "80-65", price: 165000, priceVat: 184800 },
+      { size: "100-40", price: 250000, priceVat: 280000 },
+      { size: "100-50", price: 250000, priceVat: 280000 },
+      { size: "100-65", price: 250000, priceVat: 280000 },
+      { size: "100-80", price: 250000, priceVat: 280000 },
+      { size: "150-80", price: 250000, priceVat: 280000 },
+      { size: "150-100", price: 250000, priceVat: 280000 }
+    ]
+  },
+  {
+    id: "zaglushka-rezbovaya",
+    titleRu: "ЗАГЛУШКА РЕЗЬБОВАЯ",
+    titleUz: "Rezbali zaglushka (probka)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/zaglushka-rezbovaya.jpg",
+    pdfPages: "17",
+    descriptionRu: "Резьбовая пробка с наружной трубной резьбой и граненой головкой для герметичного закрытия резьбовых муфт, отводов и тройников.",
+    descriptionUz: "Tashqi rezbali metall zaglushka (probka). Rezbali teshiklarni ishonchli yopish uchun.",
+    specs: {
+      material: "Чугун / оцинковка",
+      type: "Пробка с наружной резьбой"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 7000, priceVat: 7840 },
+      { size: "ДУ-20 (3/4\")", price: 12000, priceVat: 13440 },
+      { size: "ДУ-25 (1\")", price: 15000, priceVat: 16800 },
+      { size: "ДУ-32 (1 1/4\")", price: 35000, priceVat: 39200 },
+      { size: "ДУ-40 (1 1/2\")", price: 45000, priceVat: 50400 },
+      { size: "ДУ-50 (2\")", price: 50000, priceVat: 56000 },
+      { size: "ДУ-65 (2 1/2\")", price: 80000, priceVat: 89600 },
+      { size: "ДУ-80 (3\")", price: 105000, priceVat: 117600 },
+      { size: "ДУ-100 (4\")", price: 135000, priceVat: 151200 }
+    ]
+  },
+  {
+    id: "rezbovoy-otvod-45",
+    titleRu: "РЕЗЬБОВОЙ ОТВОД 45 ГРАДУС",
+    titleUz: "Rezbali otvod 45 gradus",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/rezbovoy-otvod-45.jpg",
+    pdfPages: "18",
+    descriptionRu: "Угольник резьбовой 45 градусов (внутренняя-наружная / внутренняя-внутренняя резьба) для плавного монтажа без острых углов.",
+    descriptionUz: "45 gradus ostida buruvchi rezbali otvod. Quvur yo'nalishini silliq o'zgartirish imkonini beradi.",
+    specs: {
+      angle: "45 градусов",
+      material: "Оцинкованный чугун"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 14000, priceVat: 15680 },
+      { size: "ДУ-20 (3/4\")", price: 18000, priceVat: 20160 },
+      { size: "ДУ-25 (1\")", price: 22000, priceVat: 24640 },
+      { size: "ДУ-32 (1 1/4\")", price: 35000, priceVat: 39200 },
+      { size: "ДУ-40 (1 1/2\")", price: 40000, priceVat: 44800 },
+      { size: "ДУ-50 (2\")", price: 50000, priceVat: 56000 },
+      { size: "ДУ-65 (2 1/2\")", price: 115000, priceVat: 128800 },
+      { size: "ДУ-80 (3\")", price: 165000, priceVat: 184800 },
+      { size: "ДУ-100 (4\")", price: 325000, priceVat: 364000 }
+    ]
+  },
+  {
+    id: "krestovina-rezbovaya",
+    titleRu: "КРЕСТОВИНА РЕЗЬБОВАЯ",
+    titleUz: "Rezbali krestovina (to'rtlik)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/krestovina-rezbovaya.jpg",
+    pdfPages: "19",
+    descriptionRu: "Резьбовая крестовина на 4 направления для разводки перекрестных трубопроводных магистралей.",
+    descriptionUz: "To'rt tomonlama quvurlarni markaziy bir nuqtada birlashtiruvchi rezbali krestovina.",
+    specs: {
+      material: "Ковкий чугун / цинк",
+      thread: "4 внутренние резьбы"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 25000, priceVat: 28000 },
+      { size: "ДУ-20 (3/4\")", price: 32000, priceVat: 35840 },
+      { size: "ДУ-25 (1\")", price: 38000, priceVat: 42560 },
+      { size: "ДУ-32 (1 1/4\")", price: 45000, priceVat: 50400 },
+      { size: "ДУ-40 (1 1/2\")", price: 60000, priceVat: 67200 },
+      { size: "ДУ-50 (2\")", price: 80000, priceVat: 89600 },
+      { size: "ДУ-65 (2 1/2\")", price: 165000, priceVat: 184800 },
+      { size: "ДУ-80 (3\")", price: 215000, priceVat: 240800 },
+      { size: "ДУ-100 (4\")", price: 325000, priceVat: 364000 }
+    ]
+  },
+  {
+    id: "amerikanka-rezbovaya",
+    titleRu: "АМЕРИКАНКА (РЕЗЬБОВАЯ)",
+    titleUz: "Rezbali amerikanka (ajraladigan sgon)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/amerikanka-rezbovaya.jpg",
+    pdfPages: "20",
+    descriptionRu: "Быстроразъемное резьбовое конусное/плоское соединение («Американка») с накидной гайкой. Позволяет демонтировать узлы без вращения труб.",
+    descriptionUz: "Tez va qulay ajratiladigan rezbali ulanish (amerikanka). Quvurni aylantirmasdan uskunalarni yechish va qayta o'rnatish imkonini beradi.",
+    specs: {
+      material: "Чугун оцинкованный / сталь",
+      seal: "Конусное / уплотнительное кольцо"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 12000, priceVat: 13440 },
+      { size: "ДУ-20 (3/4\")", price: 15000, priceVat: 16800 },
+      { size: "ДУ-25 (1\")", price: 18000, priceVat: 20160 },
+      { size: "ДУ-32 (1 1/4\")", price: 22000, priceVat: 24640 },
+      { size: "ДУ-40 (1 1/2\")", price: 38000, priceVat: 42560 },
+      { size: "ДУ-50 (2\")", price: 52000, priceVat: 58240 },
+      { size: "ДУ-65 (2 1/2\")", price: 85000, priceVat: 95200 },
+      { size: "ДУ-80 (3\")", price: 185000, priceVat: 207200 },
+      { size: "ДУ-100 (4\")", price: 265000, priceVat: 296800 }
+    ]
+  },
+  {
+    id: "flanets-rezbovoy",
+    titleRu: "ФЛАНЕЦ РЕЗЬБОВОЙ",
+    titleUz: "Rezbali po'lat flanes",
+    category: "flanges",
+    categoryRu: "Фланцы",
+    categoryUz: "Flaneslar",
+    image: "public/products/flanets-rezbovoy.jpg",
+    pdfPages: "21",
+    descriptionRu: "Стальной фланец с внутренней резьбой. Идеален для присоединения фланцевой запорной арматуры без использования сварочных аппаратов.",
+    descriptionUz: "Ichki rezbali po'lat flanes. Payvandlashsiz kranlar, zatvorlar va klapanlarni quvurga o'rnatish uchun juda qulay.",
+    specs: {
+      material: "Сталь 20",
+      pressure: "Ру 10 / Ру 16",
+      connection: "Внутренняя трубная резьба"
+    },
+    variants: [
+      { size: "ДУ-25 (1\")", price: 105000, priceVat: 117600 },
+      { size: "ДУ-32 (1 1/4\")", price: 125000, priceVat: 140000 },
+      { size: "ДУ-40 (1 1/2\")", price: 145000, priceVat: 162400 },
+      { size: "ДУ-50 (2\")", price: 165000, priceVat: 184800 },
+      { size: "ДУ-65 (2 1/2\")", price: 185000, priceVat: 207200 },
+      { size: "ДУ-80 (3\")", price: 225000, priceVat: 252000 },
+      { size: "ДУ-100 (4\")", price: 265000, priceVat: 296800 },
+      { size: "ДУ-125 (5\")", price: 305000, priceVat: 341600 },
+      { size: "ДУ-150 (6\")", price: 325000, priceVat: 364000 }
+    ]
+  },
+  {
+    id: "mufta-metallicheskaya",
+    titleRu: "МУФТА МЕТАЛЛИЧЕСКАЯ",
+    titleUz: "Metall to'g'ri mufta (rezbali)",
+    category: "threaded-fittings",
+    categoryRu: "Резьбовые фитинги",
+    categoryUz: "Rezbali fitinglar",
+    image: "public/products/mufta-metallicheskaya.jpg",
+    pdfPages: "22",
+    descriptionRu: "Прямая соединительная муфта с внутренней резьбой одного диаметра для сопряжения двух прямых трубных отрезков.",
+    descriptionUz: "Ikkita bir xil diametrdagi tashqi rezbali quvurni to'g'ri chiziqda ulash uchun metall mufta.",
+    specs: {
+      material: "Оцинкованный ковкий чугун",
+      thread: "Цилиндрическая внутренняя"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 4000, priceVat: 4480 },
+      { size: "ДУ-20 (3/4\")", price: 5000, priceVat: 5600 },
+      { size: "ДУ-25 (1\")", price: 8000, priceVat: 8960 },
+      { size: "ДУ-32 (1 1/4\")", price: 9000, priceVat: 10080 },
+      { size: "ДУ-40 (1 1/2\")", price: 11000, priceVat: 12320 },
+      { size: "ДУ-50 (2\")", price: 15000, priceVat: 16800 }
+    ]
+  },
+  {
+    id: "zatvor-diskoviy",
+    titleRu: "ЗАТВОР ДИСКОВЫЙ ПОВОРОТНЫЙ",
+    titleUz: "Aylanma diskli zatvor (kapalak)",
+    category: "valves",
+    categoryRu: "Запорная арматура",
+    categoryUz: "Zapor armaturasi",
+    image: "public/products/zatvor-diskoviy.jpg",
+    pdfPages: "23",
+    descriptionRu: "Поворотный дисковый затвор межфланцевый («баттерфляй») с рукояткой. Надежное перекрытие и регулирование потока в магистральных сетях.",
+    descriptionUz: "Flaneslararo o'rnatiladigan aylanma diskli zadvijka-zatvor (kapalak). Katta diametrlarda oqimni boshqarish uchun eng qulay vosita.",
+    specs: {
+      body: "Высокопрочный чугун с эпоксидным покрытием",
+      disc: "Нержавеющая сталь / никелированный чугун",
+      seal: "EPDM / NBR",
+      pressure: "Ру 16 (1.6 МПа)"
+    },
+    variants: [
+      { size: "ДУ-40", price: 350000, priceVat: 392000 },
+      { size: "ДУ-50", price: 385000, priceVat: 431200 },
+      { size: "ДУ-65", price: 425000, priceVat: 476000 },
+      { size: "ДУ-80", price: 495000, priceVat: 554400 },
+      { size: "ДУ-100", price: 565000, priceVat: 632800 },
+      { size: "ДУ-125", price: 825000, priceVat: 924000 },
+      { size: "ДУ-150", price: 845000, priceVat: 946400 },
+      { size: "ДУ-200", price: 1525000, priceVat: 1708000 },
+      { size: "ДУ-250", price: 2500000, priceVat: 2800000 },
+      { size: "ДУ-300", price: 3000000, priceVat: 3360000 },
+      { size: "ДУ-350", price: 7100000, priceVat: 7952000 }
+    ]
+  },
+  {
+    id: "zatvor-lug-type",
+    titleRu: "ЗАТВОР LUGE TYPE (ПРОУШИННЫЙ)",
+    titleUz: "Lug type diskli zatvor (rezbali quloqli)",
+    category: "valves",
+    categoryRu: "Запорная арматура",
+    categoryUz: "Zapor armaturasi",
+    image: "public/products/zatvor-lug-type.jpg",
+    pdfPages: "24",
+    descriptionRu: "Дисковый затвор типа LUG с резьбовыми проушинами. Позволяет производить монтаж на конце линии и демонтаж трубопровода с одной стороны под давлением.",
+    descriptionUz: "Rezbali quloqchalarga ega LUG tipidagi diskli zatvor. Quvur oxiriga o'rnatish va bir tomonlama demontaj qilish uchun juda qulay.",
+    specs: {
+      type: "LUG Type с резьбовыми проушинами",
+      pressure: "Ру 16",
+      seal: "EPDM термостойкий"
+    },
+    variants: [
+      { size: "ДУ-40", price: 425000, priceVat: 476000 },
+      { size: "ДУ-50", price: 445000, priceVat: 498400 },
+      { size: "ДУ-65", price: 650000, priceVat: 728000 },
+      { size: "ДУ-80", price: 785000, priceVat: 879200 },
+      { size: "ДУ-100", price: 1085000, priceVat: 1215200 },
+      { size: "ДУ-125", price: 1750000, priceVat: 1960000 },
+      { size: "ДУ-150", price: 1825000, priceVat: 2044000 },
+      { size: "ДУ-200", price: 2900000, priceVat: 3248000 },
+      { size: "ДУ-250", price: 4200000, priceVat: 4704000 },
+      { size: "ДУ-300", price: 6500000, priceVat: 7280000 },
+      { size: "ДУ-350", price: 10500000, priceVat: 11760000 }
+    ]
+  },
+  {
+    id: "flanets-stalnoy",
+    titleRu: "ФЛАНЕЦ СТАЛЬНОЙ ПЛОСКИЙ",
+    titleUz: "Yassi po'lat flanes (priparnoy)",
+    category: "flanges",
+    categoryRu: "Фланцы",
+    categoryUz: "Flaneslar",
+    image: "public/products/flanets-stalnoy.jpg",
+    pdfPages: "25",
+    descriptionRu: "Стальной плоский приварной фланец ГОСТ 12820-80 / ГОСТ 33259-2015. Базовый элемент для фланцевых соединений труб, затворов и насосов.",
+    descriptionUz: "Quvurlarga kiydirilib payvandlanadigan yassi po'lat flanes. Sanoatda eng ko'p ishlatiladigan universal model.",
+    specs: {
+      standard: "ГОСТ 12820-80 / ГОСТ 33259",
+      material: "Сталь 20 / Ст3сп",
+      pressure: "Ру 10 / Ру 16"
+    },
+    variants: [
+      { size: "DN15/12мм", price: 15000, priceVat: 16800 },
+      { size: "DN20/14мм", price: 18000, priceVat: 20160 },
+      { size: "DN25/16мм", price: 27000, priceVat: 30240 },
+      { size: "DN32/16мм", price: 35000, priceVat: 39200 },
+      { size: "DN40/17мм", price: 38000, priceVat: 42560 },
+      { size: "DN50/14мм", price: 48000, priceVat: 53760 },
+      { size: "DN65/16мм", price: 55000, priceVat: 61600 },
+      { size: "DN80/16мм", price: 65000, priceVat: 72800 },
+      { size: "DN100/18мм", price: 85000, priceVat: 95200 },
+      { size: "DN100/18мм (16 атм)", price: 85000, priceVat: 95200 },
+      { size: "DN125/19мм", price: 115000, priceVat: 128800 },
+      { size: "DN150/17мм", price: 135000, priceVat: 151200 },
+      { size: "DN150/24мм", price: 185000, priceVat: 207200 },
+      { size: "DN200/18мм", price: 165000, priceVat: 184800 },
+      { size: "DN200/24мм", price: 225000, priceVat: 252000 }
+    ]
+  },
+  {
+    id: "vorotnikoviy-flanets",
+    titleRu: "ВОРОТНИКОВЫЙ ФЛАНЕЦ СТАЛЬНОЙ",
+    titleUz: "Yoqali po'lat flanes (vorotnikoviy)",
+    category: "flanges",
+    categoryRu: "Фланцы",
+    categoryUz: "Flaneslar",
+    image: "public/products/vorotnikoviy-flanets.jpg",
+    pdfPages: "26",
+    descriptionRu: "Стальной приварной встык воротниковый фланец ГОСТ 12821-80. Обладает конической ступицей (воротником), выдерживает повышенные динамические нагрузки и высокое давление.",
+    descriptionUz: "Uchma-uch payvandlanadigan yoqali po'lat flanes. Yuqori bosimli va xavfli gaz/bug' tarmoqlari uchun maksimal ishonchlilik.",
+    specs: {
+      standard: "ГОСТ 12821-80 / ГОСТ 33259 тип 11",
+      material: "Сталь 20 / 09Г2С",
+      pressure: "Ру 16 до Ру 40"
+    },
+    variants: [
+      { size: "DN50/13мм", price: 115000, priceVat: 128800 },
+      { size: "DN65/15мм", price: 135000, priceVat: 151200 },
+      { size: "DN80/17мм", price: 170000, priceVat: 190400 },
+      { size: "DN100/17мм", price: 205000, priceVat: 229600 },
+      { size: "DN125/19мм", price: 300000, priceVat: 336000 },
+      { size: "DN150/19мм", price: 325000, priceVat: 364000 },
+      { size: "DN150/19мм (усил.)", price: 325000, priceVat: 364000 },
+      { size: "DN200/21мм", price: 545000, priceVat: 610400 }
+    ]
+  },
+  {
+    id: "manometr-termometr",
+    titleRu: "МАНОМЕТРЫ И ТЕРМОМЕТРЫ",
+    titleUz: "Manometr va Termometrlar (KIP)",
+    category: "instrumentation-clamps",
+    categoryRu: "Хомуты и КИПиА",
+    categoryUz: "Xomut va O'lchov asboblari",
+    image: "public/products/manometr.svg",
+    pdfPages: "27",
+    descriptionRu: "Контрольно-измерительные приборы: стандартные и виброустойчивые глицериновые манометры до 16 бар, а также биметаллические промышленные термометры.",
+    descriptionUz: "Quvurdagi bosim va haroratni o'lchash asboblari: 16 barli oddiy va glitserinli manometrlar hamda standart texnik termometr.",
+    specs: {
+      gaugeRange: "до 16 бар (1.6 МПа)",
+      filling: "Сухие и глицеринонаполненные",
+      precision: "Класс точности 1.5"
+    },
+    variants: [
+      { size: "Манометр 16 бар", price: 125000, priceVat: 140000 },
+      { size: "Манометр Глицериновый 16 бар", price: 205000, priceVat: 229600 },
+      { size: "Манометр Маленький", price: 40000, priceVat: 44800 },
+      { size: "Термометр Стандартный", price: 215000, priceVat: 240800 }
+    ]
+  },
+  {
+    id: "khomut-tyazhelyy",
+    titleRu: "ХОМУТ ДЛЯ ТЯЖЕЛОГО ВЕСА",
+    titleUz: "Og'ir yuk xomuti (rezinali)",
+    category: "instrumentation-clamps",
+    categoryRu: "Хомуты и КИПиА",
+    categoryUz: "Xomut va O'lchov asboblari",
+    image: "public/products/khomut-tyazhelyy.jpg",
+    pdfPages: "28",
+    descriptionRu: "Усиленный трубный хомут тяжелой серии с резиновым профилем EPDM для вибро- и шумоизоляции. Предназначен для надежного крепления тяжелых стальных трубопроводов.",
+    descriptionUz: "Og'ir po'lat quvurlarni devor va shiftga mahkamlash uchun kuchaytirilgan rezinali og'ir yuk xomuti. Vibratsiyani so'ndiradi.",
+    specs: {
+      material: "Оцинкованная углеродистая сталь",
+      insulation: "Резиновый профиль EPDM",
+      fasteners: "Усиленные болты М8/М10/М12"
+    },
+    variants: [
+      { size: "ДУ-15 (1/2\")", price: 15000, priceVat: 16800 },
+      { size: "ДУ-20 (3/4\")", price: 16000, priceVat: 17920 },
+      { size: "ДУ-25 (1\")", price: 18000, priceVat: 20160 },
+      { size: "ДУ-32 (1 1/4\")", price: 18500, priceVat: 20720 },
+      { size: "ДУ-40 (1 1/2\")", price: 20000, priceVat: 22400 },
+      { size: "ДУ-50 (2\")", price: 25000, priceVat: 28000 },
+      { size: "ДУ-65 (2 1/2\")", price: 28000, priceVat: 31360 },
+      { size: "ДУ-80 (3\")", price: 28000, priceVat: 31360 },
+      { size: "ДУ-100 (4\")", price: 42000, priceVat: 47040 },
+      { size: "ДУ-125 (5\")", price: 65000, priceVat: 72800 },
+      { size: "ДУ-150 (6\")", price: 75000, priceVat: 84000 },
+      { size: "ДУ-200 (8\")", price: 85000, priceVat: 95200 },
+      { size: "ДУ-250 (10\")", price: 125000, priceVat: 140000 }
+    ]
+  },
+  {
+    id: "muftoviy-kompensator",
+    titleRu: "МУФТОВЫЙ СИЛЬФОННЫЙ КОМПЕНСАТОР",
+    titleUz: "Rezbali silfonli kompensator",
+    category: "expansion-joints",
+    categoryRu: "Компенсаторы",
+    categoryUz: "Kompensatorlar",
+    image: "public/products/muftoviy-kompensator.jpg",
+    pdfPages: "29",
+    descriptionRu: "Осевой сильфонный компенсатор с резьбовым муфтовым присоединением. Компенсирует температурные удлинения и вибрации в системах отопления и ГВС.",
+    descriptionUz: "Isitish va issiq suv tarmoqlarida quvur kengayishi va silkinishlarini yutuvchi rezbali silfonli kompensator.",
+    specs: {
+      bellows: "Нержавеющая сталь AISI 304/321",
+      connection: "Резьбовое муфтовое",
+      pressure: "Ру 16"
+    },
+    variants: [
+      { size: "ДУ-25", price: 145000, priceVat: 162400 },
+      { size: "ДУ-32", price: 185000, priceVat: 207200 },
+      { size: "ДУ-40", price: 225000, priceVat: 252000 }
+    ]
+  },
+  {
+    id: "flantseviy-silfonniy-kompensator",
+    titleRu: "ФЛАНЦЕВЫЙ СИЛЬФОННЫЙ КОМПЕНСАТОР",
+    titleUz: "Flanesli silfonli kompensator (temir)",
+    category: "expansion-joints",
+    categoryRu: "Компенсаторы",
+    categoryUz: "Kompensatorlar",
+    image: "public/products/flantseviy-silfonniy-kompensator.jpg",
+    pdfPages: "30",
+    descriptionRu: "Металлический сильфонный компенсатор с поворотными/приварными фланцами и ограничительными шпильками. Воспринимает продольные температурные перемещения магистралей.",
+    descriptionUz: "Cheklovchi shtilkalarga ega po'lat flanesli silfon kompensator. Magistral quvurlarning harorat ta'sirida cho'zilishi va qisqarishini qoplaydi.",
+    specs: {
+      bellows: "Многослойный сильфон из нержавеющей стали",
+      flanges: "Углеродистая сталь Ст.20",
+      pressure: "Ру 16 / Ру 25"
+    },
+    variants: [
+      { size: "50*160mm", price: 560000, priceVat: 627200 },
+      { size: "65*180mm", price: 675000, priceVat: 756000 },
+      { size: "80*200mm", price: 1000000, priceVat: 1120000 },
+      { size: "100*230mm", price: 1200000, priceVat: 1344000 },
+      { size: "125*250mm", price: 1700000, priceVat: 1904000 },
+      { size: "150*280mm", price: 2500000, priceVat: 2800000 },
+      { size: "200*200mm", price: 2875000, priceVat: 3220000 },
+      { size: "250*240mm", price: 3275000, priceVat: 3668000 },
+      { size: "300*260mm", price: 3825000, priceVat: 4284000 }
+    ]
+  },
+  {
+    id: "flantseviy-kompensator",
+    titleRu: "ФЛАНЦЕВЫЙ КОМПЕНСАТОР (РЕЗИНОВЫЙ / ВИБРОВСТАВКА)",
+    titleUz: "Flanesli rezina kompensator (vibrovstavka)",
+    category: "expansion-joints",
+    categoryRu: "Компенсаторы",
+    categoryUz: "Kompensatorlar",
+    image: "public/products/flantseviy-kompensator.jpg",
+    pdfPages: "31",
+    descriptionRu: "Резиновый антивибрационный фланцевый компенсатор (вибровставка). Гасит гидравлические удары, шум и механические колебания от работы насосов.",
+    descriptionUz: "Nasos va uskunalar tebranishi hamda gidrozarbalarni yumshatuvchi rezina vibrovstavka (flanesli rezina kompensator).",
+    specs: {
+      body: "Синтетический кордированный эластомер EPDM",
+      flanges: "Оцинкованная углеродистая сталь",
+      pressure: "Ру 10 / Ру 16",
+      tempRange: "-10°C ... +115°C"
+    },
+    variants: [
+      { size: "ДУ-50", price: 315000, priceVat: 352800 },
+      { size: "ДУ-65", price: 400000, priceVat: 448000 },
+      { size: "ДУ-80", price: 450000, priceVat: 504000 },
+      { size: "ДУ-100", price: 500000, priceVat: 560000 },
+      { size: "ДУ-125", price: 650000, priceVat: 728000 },
+      { size: "ДУ-150", price: 875000, priceVat: 980000 },
+      { size: "ДУ-200", price: 1200000, priceVat: 1344000 }
+    ]
+  }
+];
+
+// enrich with minPrice, minPriceVat, and count
+products.forEach(p => {
+  p.minPrice = Math.min(...p.variants.map(v => v.price));
+  p.minPriceVat = Math.min(...p.variants.map(v => v.priceVat));
+  p.variantsCount = p.variants.length;
+});
+
+const categories = [
+  { id: "all", nameUz: "Barcha mahsulotlar", nameRu: "Все товары", icon: "bi-grid-fill" },
+  { id: "welded-fittings", nameUz: "Payvandlash fitinglari", nameRu: "Приварные фитинги", icon: "bi-hammer" },
+  { id: "threaded-fittings", nameUz: "Rezbali fitinglar", nameRu: "Резьбовые фитинги", icon: "bi-nut" },
+  { id: "valves", nameUz: "Zapor armaturasi", nameRu: "Запорная арматура", icon: "bi-toggle2-on" },
+  { id: "flanges", nameUz: "Flaneslar", nameRu: "Фланцы", icon: "bi-disc" },
+  { id: "expansion-joints", nameUz: "Kompensatorlar", nameRu: "Компенсаторы", icon: "bi-arrows-expand" },
+  { id: "instrumentation-clamps", nameUz: "Xomut va KIP", nameRu: "Хомуты и КИПиА", icon: "bi-speedometer2" }
+];
+
+fs.writeFileSync('public/data/products.json', JSON.stringify({ categories, products }, null, 2));
+fs.writeFileSync('src/products-data.js', 'export const catalogData = ' + JSON.stringify({ categories, products }, null, 2) + ';');
+console.log('Products data saved! Total products:', products.length);
+

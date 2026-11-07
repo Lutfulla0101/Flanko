@@ -1,0 +1,19 @@
+{
+  "name": "flanko-industrial",
+  "version": "1.0.0",
+  "description": "Flanko - Industrial Metal Fittings, Flanges & Valves Catalog",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "flanko",
+    "fittings",
+    "flanges",
+    "valves",
+    "pipes"
+  ],
+  "author": "Flanko",
+  "license": "ISC"
+}
+

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLANKO — Sanoat Quvurlari va Metall Fitinglar</title>
+  <meta name="description" content="Flanko - Truboprovodlar, isitish, gaz va suv tarmoqlari uchun 350+ turdagi metall fitinglar, po'lat flaneslar, zapor armaturalari va kompensatorlar ulgurji savdosi.">
+  
+  <!-- Favicon matching the Logo (Flanko) -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=flanko2026">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=flanko2026">
+  <link rel="icon" type="image/png" sizes="32x32" href="public/images/favicon-32.png?v=flanko2026">
+  <link rel="icon" type="image/png" sizes="16x16" href="public/images/favicon-16.png?v=flanko2026">
+  <link rel="apple-touch-icon" href="public/images/logo-circle.png?v=flanko2026">
+
+  <!-- Google Fonts: Outfit & JetBrains Mono for High-Tech Metallic Industrial Look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-features">
+        <span class="top-feature-item">
+          <i class="bi bi-truck"></i>
+          <span>Shahar bo'ylab bepul yetkazib berish</span>
+        </span>
+        <span class="top-feature-item">
+          <i class="bi bi-shield-fill-check"></i>
+          <span>12 oylik rasmiy sifat kafolati</span>
+        </span>
+        <span class="top-feature-item">
+          <i class="bi bi-clock-history"></i>
+          <span>Ish vaqti: 09:00 — 21:00</span>
+        </span>
+      </div>
+      <div class="top-bar-contacts">
+        <a href="tel:+998998710327" class="top-contact-link">
+          <i class="bi bi-telephone-fill" style="color: var(--cyan-light);"></i>
+          <span>+998 (99) 871-03-27</span>
+        </a>
+        <a href="https://t.me/Bobur8710327" target="_blank" class="top-contact-link">
+          <i class="bi bi-telegram" style="color: var(--cyan-light);"></i>
+          <span>@Bobur8710327</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <nav class="navbar" id="main-navbar">
+    <div class="container nav-container">
+      
+      <!-- Brand Logo & Name -->
+      <a href="#" class="brand">
+        <div class="brand-logo-frame">
+          <img src="public/images/logo-circle.png" alt="Flanko Logo" class="brand-logo-img">
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-title">FLANKO</span>
+          <span class="brand-subtitle" data-i18n="siteSubtitle">SANOAT FITINGLARI VA ARMATURALAR</span>
+        </div>
+      </a>
+
+      <!-- Real-time Live Search Input -->
+      <div class="nav-search">
+        <i class="bi bi-search nav-search-icon"></i>
+        <input type="text" id="nav-search-input" class="nav-search-input" 
+               placeholder="Mahsulot nomi, o'lchami yoki DN bo'yicha qidirish..."
+               data-i18n-placeholder="searchPlaceholder">
+        <button id="nav-search-clear" class="nav-search-clear" title="Tozalash">
+          <i class="bi bi-x-circle-fill"></i>
+        </button>
+      </div>
+
+      <!-- Nav Actions: VAT Switch, Language, Cart, Contact -->
+      <div class="nav-actions">
+        
+        <!-- VAT Toggle Mode -->
+        <div class="vat-toggle-box" title="Narxlarni QQS bilan yoki QQSsiz ko'rish">
+          <div id="vat-opt-without" class="vat-toggle-opt" data-i18n="vatWithout">QQSsiz</div>
+          <div id="vat-opt-with" class="vat-toggle-opt active" data-i18n="vatWith">+12% QQS</div>
+        </div>
+
+        <!-- Language Switcher -->
+        <button id="lang-toggle-btn" class="lang-btn" title="Tilni o'zgartirish">
+          <i class="bi bi-globe2"></i>
+          <span id="lang-btn-text">O'zbekcha</span>
+        </button>
+
+        <!-- Cart / Estimate Button -->
+        <button id="cart-nav-btn" class="cart-btn">
+          <i class="bi bi-cart3" style="font-size: 1.15rem; color: var(--cyan-light);"></i>
+          <span class="cart-badge" id="cart-badge" style="display: none;">0</span>
+          <span class="cart-sum" id="cart-sum"></span>
+        </button>
+
+        <!-- Quick Telegram Button -->
+        <a href="https://t.me/Bobur8710327" target="_blank" class="nav-tg-btn">
+          <i class="bi bi-telegram"></i>
+          <span>@Bobur8710327</span>
+        </a>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       HERO SECTION
+       ========================================================================= -->
+  <section class="hero">
+    <div class="container hero-grid-center">
+      
+      <!-- Hero Center Content -->
+      <div class="hero-content hero-content-center">
+        <div class="hero-badge-wrap">
+          <span class="hero-badge-dot"></span>
+          <span class="hero-badge-text" data-i18n="heroBadge">Sanoat fitinglari va armaturalar ombori</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span data-i18n="heroTitlePrefix">FLANKO — Yuqori Sifatli</span> <br>
+          <span class="hero-title-highlight" data-i18n="heroTitleHighlight">Metall Fitinglar va Quvur Armaturalari</span>
+        </h1>
+
+        <p class="hero-desc" data-i18n="heroDesc">
+          Truboprovodlar, isitish, gaz va suv tarmoqlari uchun 350+ turdagi metall perexodlar, troyniklar, otvodlar, flaneslar va zapor armaturalari to'g'ridan-to'g'ri birinchi qo'ldan.
+        </p>
+
+        <div class="hero-cta-group hero-cta-center">
+          <a href="#catalog" class="btn-primary btn-large">
+            <i class="bi bi-grid-3x3-gap-fill"></i>
+            <span data-i18n="heroCatalogBtn">Katalogga o'tish</span>
+          </a>
+        </div>
+
+        <div class="hero-features hero-features-center">
+          <div class="hero-feature-item">
+            <i class="bi bi-truck"></i>
+            <span>Shahar bo'ylab bepul yetkazib berish (tekinga)</span>
+          </div>
+          <div class="hero-feature-item">
+            <i class="bi bi-shield-fill-check"></i>
+            <span>12 oy rasmiy sifat kafolati</span>
+          </div>
+          <div class="hero-feature-item">
+            <i class="bi bi-graph-up-arrow"></i>
+            <span>2 yillik tajriba • 400+ mlrd so'm tovar sotilgan</span>
+          </div>
+          <div class="hero-feature-item">
+            <i class="bi bi-clock-history"></i>
+            <span>Har kuni 09:00 dan 21:00 gacha xizmat</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       STATS COUNTER SECTION
+       ========================================================================= -->
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-calendar-check-fill"></i></div>
+        <div class="stat-info">
+          <span class="stat-value">2 Yil</span>
+          <span class="stat-label">Bozordagi ishonchli tajriba</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-cash-stack"></i></div>
+        <div class="stat-info">
+          <span class="stat-value">400+ Mlrd</span>
+          <span class="stat-label">Sotilgan tovarlar hajmi</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-patch-check-fill"></i></div>
+        <div class="stat-info">
+          <span class="stat-value">12 Oy</span>
+          <span class="stat-label">To'liq sifat kafolati</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="bi bi-truck-front-fill"></i></div>
+        <div class="stat-info">
+          <span class="stat-value">0 So'm</span>
+          <span class="stat-label">Shahar bo'ylab bepul dostavka</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       CATALOG SECTION
+       ========================================================================= -->
+  <section class="catalog-section" id="catalog">
+    <div class="container">
+      
+      <!-- Section Header -->
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="catalogSubtitle">Mahsulotlar katalogi</span>
+        <h2 class="section-title" data-i18n="catalogTitle">Ombordagi Barcha Metall Fitinglar va Armaturalar</h2>
+        <p class="section-desc" data-i18n="catalogDesc">
+          Kerakli toifani tanlang yoki qidiruv orqali kerakli diametr va standartdagi detalni toping
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="category-tabs-wrapper">
+        <div class="category-tabs" id="category-tabs">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+
+      <!-- Catalog Toolbar -->
+      <div class="catalog-toolbar">
+        <div class="toolbar-left">
+          <span class="results-count" id="results-count"><strong>27</strong> ta mahsulot topildi</span>
+        </div>
+        <div class="toolbar-right">
+          <select id="sort-select" class="sort-select">
+            <option value="default" data-i18n="sortDefault">Saralash: Standart</option>
+            <option value="price_asc" data-i18n="sortPriceAsc">Narx: Arzondan qimmatga</option>
+            <option value="price_desc" data-i18n="sortPriceDesc">Narx: Qimmatdan arzonga</option>
+            <option value="name" data-i18n="sortName">Nomi bo'yicha (A-Z)</option>
+            <option value="variants" data-i18n="sortVariants">Razmerlar soni ko'pligi bo'yicha</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Cards Grid -->
+      <div class="products-grid" id="products-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       ABOUT & ADVANTAGES SECTION
+       ========================================================================= -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-i18n="aboutSubtitle">Nima uchun biz?</span>
+        <h2 class="section-title" data-i18n="aboutTitle">Flanko bilan hamkorlik afzalliklari</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-card-icon"><i class="bi bi-buildings-fill"></i></div>
+          <h3 class="about-card-title" data-i18n="about1Title">Katta Ombor va Tezkor Yetkazish</h3>
+          <p class="about-card-text" data-i18n="about1Text">
+            Barcha 27 toifadagi detallar va 350+ o'lchamlar Toshkent omborimizda doimiy zaxirada mavjud. Katta obyektlar uchun kechiktirmasdan yetkazib beramiz.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-card-icon"><i class="bi bi-patch-check-fill"></i></div>
+          <h3 class="about-card-title" data-i18n="about2Title">Sertifikatlangan Sifat (ГОСТ & EN)</h3>
+          <p class="about-card-text" data-i18n="about2Text">
+            Har bir mahsulot metall sifat sertifikati va texnik pasportga ega. Yuqori bosim va haroratga to'liq javob beradi.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <div class="about-card-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
+          <h3 class="about-card-title" data-i18n="about3Title">QQS Bilan Rasmiy Shartnoma</h3>
+          <p class="about-card-text" data-i18n="about3Text">
+            Qurilish kompaniyalari, zavodlar va montaj tashkilotlari uchun 12% QQS bilan to'liq hisob-faktura va qonuniy kafolat taqdim etiladi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       BIZ HAQIMIZDA (ABOUT US) SECTION
+       ========================================================================= -->
+  <section class="about-company-section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Kompaniya haqida</span>
+        <h2 class="section-title">Biz haqimizda — FLANKO</h2>
+        <p class="section-desc">
+          2 yillik ishonchli tajriba, 400+ mlrd so'mlik sifatli mahsulotlar va 12 oylik rasmiy kafolat
+        </p>
+      </div>
+
+      <div class="about-company-box">
+        <div class="about-company-text">
+          <h3 class="about-headline">FLANKO — Sanoat va Muhandislik Tarmoqlari Uchun Ishonchli Yechim</h3>
+          <p class="about-paragraph">
+            <strong>FLANKO</strong> kompaniyasi 2 yildan buyon O'zbekiston sanoat va qurilish bozorida quvur tizimlari, metall fitinglar, po'lat flaneslar hamda zapor armaturalarini to'g'ridan-to'g'ri birinchi qo'ldan yetkazib berish bilan shug'ullanib kelmoqda.
+          </p>
+          <p class="about-paragraph">
+            Faoliyatimiz davomida <strong>400+ milliard so'mdan ortiq</strong> sifatli metall tovarlari va quvur detallari yirik ishlab chiqarish zavodlari, magistral muhandislik tarmoqlari hamda qurilish obyektlariga muvaffaqiyatli yetkazib berildi.
+          </p>
+          <p class="about-paragraph">
+            Biz har bir mahsulotimizga <strong>12 oy to'liq sifat kafolati</strong> taqdim etamiz hamda shahar bo'ylab buyurtmalarni <strong>tekinga (bepul) yetkazib beramiz</strong>!
+          </p>
+
+          <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 0.94rem; color: #fff;">
+            <div><i class="bi bi-geo-alt-fill" style="color: var(--cyan-light);"></i> <strong>Manzilimiz:</strong> Toshkent tuman, Oltintepa, Qalbinur mebel zdaniyasida</div>
+            <div><i class="bi bi-clock-fill" style="color: var(--cyan-light);"></i> <strong>Ish vaqtimiz:</strong> Har kuni 09:00 dan 21:00 gacha</div>
+            <div><i class="bi bi-telephone-fill" style="color: var(--cyan-light);"></i> <strong>Bog'lanish:</strong> <a href="tel:+998998710327" style="color: var(--cyan-light); font-weight: bold;">+998 (99) 871-03-27</a> (Bobur)</div>
+            <div><i class="bi bi-telegram" style="color: var(--cyan-light);"></i> <strong>Telegram:</strong> <a href="https://t.me/Bobur8710327" target="_blank" style="color: var(--cyan-light); font-weight: bold;">@Bobur8710327</a></div>
+          </div>
+        </div>
+
+        <div class="about-company-stats-grid">
+          <div class="about-stat-item">
+            <div class="about-stat-num">2 YIL</div>
+            <div class="about-stat-text">Bozordagi muvaffaqiyatli faoliyat</div>
+          </div>
+          <div class="about-stat-item">
+            <div class="about-stat-num">400+ MLRD</div>
+            <div class="about-stat-text">Yetkazib berilgan tovarlar hajmi (so'm)</div>
+          </div>
+          <div class="about-stat-item">
+            <div class="about-stat-num">12 OY</div>
+            <div class="about-stat-text">Barcha mahsulotlarga rasmiy kafolat</div>
+          </div>
+          <div class="about-stat-item">
+            <div class="about-stat-num">TEKINGA</div>
+            <div class="about-stat-text">Shahar bo'ylab bepul yetkazib berish</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER (UZUNASIGA / FULL WIDTH BALANCED HORIZONTAL FOOTER)
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <!-- Col 1: Brand & Identity -->
+        <div class="footer-col-brand">
+          <a href="#" class="brand">
+            <div class="brand-logo-frame">
+              <img src="public/images/logo-circle.png" alt="Flanko Logo" class="brand-logo-img">
+            </div>
+            <div class="brand-text-block">
+              <span class="brand-title">FLANKO</span>
+              <span class="brand-subtitle">SANOAT FITINGLARI VA ARMATURALAR</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Sanoat va qurilish quvurlari uchun yuqori sifatli metall fitinglar, flaneslar va zapor armaturalari ulgurji markazi. 2 yillik tajriba va 12 oylik rasmiy kafolat.
+          </p>
+          <div class="footer-socials">
+            <a href="https://t.me/Bobur8710327" target="_blank" class="footer-social-btn" title="Telegram: @Bobur8710327">
+              <i class="bi bi-telegram"></i>
+            </a>
+            <a href="tel:+998998710327" class="footer-social-btn" title="Qo'ng'iroq qilish: +998 (99) 871-03-27">
+              <i class="bi bi-telephone-fill"></i>
+            </a>
+            <a href="mailto:info@flanko.uz" class="footer-social-btn" title="Email">
+              <i class="bi bi-envelope-fill"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Bo'limlar</h4>
+          <ul class="footer-links">
+            <li><a href="#catalog"><i class="bi bi-chevron-right"></i> Mahsulotlar katalogi</a></li>
+            <li><a href="#about"><i class="bi bi-chevron-right"></i> Biz haqimizda</a></li>
+            <li><a href="javascript:void(0)" onclick="window.flankoApp.openCartDrawer()"><i class="bi bi-chevron-right"></i> Savat / Smeta</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Categories -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Asosiy toifalar</h4>
+          <ul class="footer-links">
+            <li><a href="#catalog"><i class="bi bi-chevron-right"></i> Payvandlash fitinglari</a></li>
+            <li><a href="#catalog"><i class="bi bi-chevron-right"></i> Rezbali fitinglar</a></li>
+            <li><a href="#catalog"><i class="bi bi-chevron-right"></i> Zapor armaturalari</a></li>
+            <li><a href="#catalog"><i class="bi bi-chevron-right"></i> Po'lat flaneslar</a></li>
+            <li><a href="#catalog"><i class="bi bi-chevron-right"></i> Silfonli kompensatorlar</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contacts -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Aloqa va Manzil</h4>
+          <ul class="footer-contacts-list">
+            <li class="footer-contact-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>Toshkent tuman, Oltintepa, Qalbinur mebel zdaniyasida</span>
+            </li>
+            <li class="footer-contact-item">
+              <i class="bi bi-telephone-fill"></i>
+              <a href="tel:+998998710327" style="color: inherit; font-weight: bold;">+998 (99) 871-03-27</a>
+            </li>
+            <li class="footer-contact-item">
+              <i class="bi bi-telegram"></i>
+              <a href="https://t.me/Bobur8710327" target="_blank" style="color: inherit; font-weight: bold;">@Bobur8710327</a>
+            </li>
+            <li class="footer-contact-item">
+              <i class="bi bi-clock-fill"></i>
+              <span>Har kuni: 09:00 — 21:00</span>
+            </li>
+            <li class="footer-contact-item">
+              <i class="bi bi-truck"></i>
+              <span style="color: var(--cyan-light);">Shahar bo'ylab tekinga yetkazib berish</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <div>&copy; 2026 FLANKO METAL. Barcha huquqlar himoyalangan.</div>
+        <div class="footer-bottom-badge">
+          <i class="bi bi-shield-fill-check" style="color: var(--cyan-light);"></i>
+          <span>12 oy kafolat • 400+ mlrd tovar • Tekinga dostavka</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       PRODUCT DETAILS MODAL
+       ========================================================================= -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="window.flankoApp.closeModal()" title="Yopish">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div class="modal-content-grid">
+        
+        <!-- Left: Large Image & Specs -->
+        <div class="modal-image-col">
+          <div class="modal-img-frame">
+            <img id="modal-img" src="" alt="">
+          </div>
+
+          <div class="modal-specs-box">
+            <div class="specs-title" data-i18n="modalSpecsTitle">Texnik ko'rsatkichlari:</div>
+            <table class="specs-table">
+              <tbody id="modal-specs-table">
+                <!-- Specs rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right: Title, Desc, and All Sizes Table from PDF -->
+        <div class="modal-info-col">
+          <div class="modal-badge-row">
+            <span class="modal-cat-badge" id="modal-cat"></span>
+            <span class="modal-page-badge" id="modal-page"></span>
+          </div>
+
+          <h2 class="modal-title" id="modal-title"></h2>
+          <div class="modal-title-sub" id="modal-title-sub"></div>
+          <p class="modal-description" id="modal-desc"></p>
+
+          <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <i class="bi bi-table" style="color: var(--cyan-light);"></i>
+            <span>PDF Katalogdagi barcha o'lchamlar va narxlar:</span>
+          </h3>
+
+          <div class="variants-table-wrapper">
+            <table class="variants-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;" data-i18n="modalTableNo">№</th>
+                  <th data-i18n="modalTableSize">O'lchami / Parametri</th>
+                  <th data-i18n="modalTablePrice">Narxi (QQSsiz)</th>
+                  <th data-i18n="modalTableVat">Narxi (+12% QQS)</th>
+                  <th style="text-align: right;" data-i18n="modalTableAction">Amal</th>
+                </tr>
+              </thead>
+              <tbody id="modal-variants-tbody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CART & ESTIMATE DRAWER
+       ========================================================================= -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+    <div class="cart-drawer">
+      
+      <div class="cart-drawer-header">
+        <div class="cart-drawer-title">
+          <i class="bi bi-cart-check-fill" style="color: var(--cyan-light);"></i>
+          <span data-i18n="cartBtn">Savat / Smeta</span>
+        </div>
+        <button class="cart-drawer-close" onclick="window.flankoApp.closeCartDrawer()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Cart items rendered dynamically -->
+      </div>
+
+      <div class="cart-drawer-footer" id="cart-drawer-footer">
+        <div class="cart-calc-row">
+          <span data-i18n="cartSubtotal">Mahsulotlar qiymati (QQSsiz):</span>
+          <strong id="cart-calc-subtotal" style="font-family: var(--font-mono); color: #fff;">0 so'm</strong>
+        </div>
+        <div class="cart-calc-row vat-row">
+          <span data-i18n="cartVat">QQS (12%):</span>
+          <strong id="cart-calc-vat" style="font-family: var(--font-mono);">0 so'm</strong>
+        </div>
+        <div class="cart-calc-row total-row">
+          <span data-i18n="cartTotal">Jami to'lov miqdori:</span>
+          <strong id="cart-calc-total" style="font-family: var(--font-mono); color: var(--cyan-light);">0 so'm</strong>
+        </div>
+
+        <div class="cart-drawer-btns">
+          <button class="btn-print-smeta" onclick="window.flankoApp.printSmeta()">
+            <i class="bi bi-printer-fill"></i>
+            <span data-i18n="printSmeta">Smetani chop etish</span>
+          </button>
+          <button class="btn-order-tg" onclick="window.flankoApp.sendOrderTelegram()">
+            <i class="bi bi-telegram"></i>
+            <span data-i18n="sendTelegram">Telegram orqali</span>
+          </button>
+        </div>
+
+        <button onclick="window.flankoApp.clearCart()" style="background: none; border: none; color: var(--text-muted); font-size: 0.8rem; cursor: pointer; text-align: center; margin-top: 4px;">
+          <i class="bi bi-trash3"></i> <span data-i18n="clearCart">Savatni tozalash</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Hidden Container for Printable Invoice Sheet (Ctrl+P / Print Smeta) -->
+  <div id="print-smeta-sheet"></div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Application Scripts -->
+  <script src="js/products-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+

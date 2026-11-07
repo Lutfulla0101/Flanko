@@ -1,10 +1,10 @@
 {
   "name": "flanko-industrial",
   "version": "1.0.0",
-  "description": "Flanko - Industrial Metal Fittings, Flanges & Valves Catalog",
-  "main": "server.js",
+  "description": "Flanko - Sanoat metall fitinglar va quvur armaturalari katalogi",
   "scripts": {
-    "start": "node server.js"
+    "start": "node local-server.js",
+    "dev": "node local-server.js"
   },
   "keywords": [
     "flanko",
@@ -16,4 +16,3 @@
   "author": "Flanko",
   "license": "ISC"
 }
-
